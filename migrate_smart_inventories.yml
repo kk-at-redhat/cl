@@ -7,7 +7,7 @@
     - name: INVENTORIES - Build list with all smart inventories
       ansible.builtin.set_fact:
         controller_objects_inventories_constructed: "{{ controller_objects_inventories_constructed | default([]) +
-                                                        [{'name': item.name,
+                                                        [{'name': item.name + 'migrated',
                                                           'descr': item.description,
                                                           'org': item.summary_fields.organization.name,
                                                           'input': lookup('ansible.controller.controller_api',
@@ -26,8 +26,8 @@
                                                                    replace(' and ', ' :& ') |
                                                                    regex_replace('name__startswith=(\\S*)', '\\1*') |
                                                                    regex_replace('groups__name__icontains=(\\S*)', '!!!!groups__name__icontains=\\1') |
-                                                                   regex_replace(' name__icontains=(\\S*)', ' *\\1*') |
-                                                                   replace(' groups__name=', ' ') |
+                                                                   regex_replace('(?:^| )name__icontains=(\\S*)', ' *\\1*') |
+                                                                   replace('groups__name=', ' ') |
                                                                    replace('name__exact=', '') |
                                                                    replace('name=', '') |
                                                                    replace('groups__name__regex=', '~') |
