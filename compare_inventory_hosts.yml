@@ -1,5 +1,5 @@
 ---
-- name: INVENTORIES - Count inventory hosts
+- name: INVENTORIES - Compare inventory hosts
   hosts: localhost
   gather_facts: false
 
@@ -17,7 +17,7 @@
             item.kind == 'constructed' or
             item.kind == 'smart'
 
-    - name: INVENTORIES - Build list with host difference for migrated inventories
+    - name: INVENTORIES - Build list with host difference
       ansible.builtin.set_fact:
         controller_objects_inventory_host_difference: "{{ controller_objects_inventory_host_difference | default([]) +
                                                           [{'name': item.name,
