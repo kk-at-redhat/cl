@@ -7,7 +7,7 @@
     - name: INVENTORIES - Build list with all smart inventories
       ansible.builtin.set_fact:
         controller_objects_inventories_constructed: "{{ controller_objects_inventories_constructed | default([]) +
-                                                        [{'name': item.name + 'migrated',
+                                                        [{'name': item.name + ' migrated',
                                                           'descr': item.description,
                                                           'org': item.summary_fields.organization.name,
                                                           'input': lookup('ansible.controller.controller_api',
