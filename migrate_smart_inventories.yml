@@ -31,7 +31,8 @@
                                                                    replace('name__exact=', '') |
                                                                    replace('name=', '') |
                                                                    replace('groups__name__regex=', '~') |
-                                                                   replace(' ', ''),
+                                                                   replace(' ', '') |
+                                                                   regex_replace('^:(?:&)?', ''),
                                                           'source': ''} |
                                                         regex_replace('\n', '')] }}"
       loop: "{{ lookup('ansible.controller.controller_api', 'inventories/', return_objects=false, return_all=true).results }}"
