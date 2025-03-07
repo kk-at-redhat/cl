@@ -25,14 +25,15 @@
                                                                    replace(' or ', ' : ') |
                                                                    replace(' and ', ' :& ') |
                                                                    regex_replace('name__startswith=(\\S*)', '\\1*') |
-                                                                   regex_replace('groups__name__icontains=(\\S*)', '!!!!groups__name__icontains=\\1') |
-                                                                   regex_replace('(?:^| )name__icontains=(\\S*)', ' *\\1*') |
-                                                                   replace('groups__name=', ' ') |
+                                                                   regex_replace('groups__name__icontains=(\\S*)', '*\\1*') |
+                                                                   regex_replace('groups__name__regex=(\\S*)', '~\\1') |
+                                                                   regex_replace('name__icontains=(\\S*)', ' *\\1*') |
+                                                                   regex_replace('name__regex=(\\S*)', ' ~\\1*') |
+                                                                   replace('groups__name=', '') |
                                                                    replace('name__exact=', '') |
                                                                    replace('name=', '') |
-                                                                   replace('groups__name__regex=', '~') |
                                                                    replace(' ', '') |
-                                                                   regex_replace('^:(?:&)?', ''),
+                                                                   regex_replace('^:', ''),
                                                           'source': ''} |
                                                         regex_replace('\n', '')] }}"
       loop: "{{ lookup('ansible.controller.controller_api', 'inventories/', return_objects=false, return_all=true).results }}"
