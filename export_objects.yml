@@ -1,6 +1,6 @@
 ---
 - name: Export all objects from AWX
-  import_playbook: kk_at_redhat.aapconfig.aap_audit_all.yml
+  import_playbook: configify.aapconfig.aap_audit_all.yml
   vars:
     aap_platform: awx24
     format_for_25: true
