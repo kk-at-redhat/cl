@@ -52,10 +52,6 @@
       loop_control:
         label: " | setting: {{ item }}"
 
-    - name: SETTINGS - Include variables with default settings
-      ansible.builtin.include_vars:
-        dir: "../roles/controller_config/defaults/main/"
-
     - name: SETTINGS - Compare current AUTH settings to defaults
       ansible.builtin.set_fact:
         controller_settings_authentication: "{{ controller_settings_current.authentication | dict2items |
