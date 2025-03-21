@@ -52,16 +52,6 @@
       loop_control:
         label: " | setting: {{ item }}"
 
-    - name: SETTINGS - Compare current AUTH settings to defaults
-      ansible.builtin.set_fact:
-        controller_settings_authentication: "{{ controller_settings_current.authentication | dict2items |
-                                                difference(controller_config_settings_default_authentication | dict2items) | items2dict }}"
-
-    - name: SETTINGS - Compare current JOBS settings to defaults
-      ansible.builtin.set_fact:
-        controller_settings_jobs: "{{ controller_settings_current.jobs | dict2items |
-                                                difference(controller_config_settings_default_jobs | dict2items) | items2dict }}"
-
     - name: SETTINGS - Export LDAP settings (pre 2.5)
       when: >
             pre_25 | default('') or
